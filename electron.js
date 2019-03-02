@@ -1,16 +1,18 @@
 // The start of this project is from: https://github.com/electron/electron-quick-start
+// Other resources:
+//  - https://www.christianengvall.se/electron-packager-tutorial/
+//  - https://angularfirebase.com/lessons/desktop-apps-with-electron-and-angular/
 // Modules to control application life and create native browser window
-import { app, BrowserWindow } from 'electron';
-import * as path from "path"
+const { app, BrowserWindow } = require('electron')
+const path = require('path')
+const url = require('url')
 
-// Keep a global reference of the window object, if you don't, the window will
-// be closed automatically when the JavaScript object is garbage collected.
-let win: Electron.BrowserWindow | null = null
+let win;
 
 function createWindow() {
     // Create the browser window.
     win = new BrowserWindow({
-        width: 800,
+        width: 600,
         height: 600,
         darkTheme: true,
         webPreferences: {
@@ -19,11 +21,20 @@ function createWindow() {
     })
 
     // and load the index.html of the app.
-    // win.loadFile('./src/main.html')
-    // win.loadURL('file://' + __dirname + '/main.html')
-    win.loadFile(path.join(__dirname, "../src/electron.html"))
-    // Open the DevTools.
-    // mainWindow.webContents.openDevTools()
+    win.loadURL(url.format({
+        pathname: path.join(__dirname, "/dist/index.html"),
+        protocol: 'file:',
+        slashes: true
+    }))
+
+    //// uncomment below to open the DevTools.
+    // win.webContents.openDevTools()
+
+    win.on('ready-to-show', () => {
+        if (win !== null) {
+            win.show()
+        }
+    })
 
     // Emitted when the window is closed.
     win.on('closed', () => {
