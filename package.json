@@ -1,32 +1,35 @@
 {
-  "name": "dev-tools-linux",
-  "version": "1.0.0",
-  "description": "Dev Tools Installer on Ubuntu",
-  "main": "./src/main.js",
-  "private": true,
-  "scripts": {
-    "start": "electron .",
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/bogdanmic/dev-tools-linux.git"
-  },
-  "keywords": [
-    "Electron",
-    "Dev",
-    "Developer",
-    "Tools",
-    "Installer",
-    "Ubuntu"
-  ],
-  "author": "Bogdan Mic <mic.bogdan@gmail.com>",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/bogdanmic/dev-tools-linux/issues"
-  },
-  "homepage": "https://github.com/bogdanmic/dev-tools-linux#readme",
-  "devDependencies": {
-    "electron": "^4.0.6"
-  }
+    "name": "dev-tools-linux",
+    "version": "1.0.0",
+    "description": "Dev Tools Installer on Ubuntu",
+    "main": "./src/main.js",
+    "private": true,
+    "scripts": {
+        "start": "electron .",
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/bogdanmic/dev-tools-linux.git"
+    },
+    "keywords": [
+        "Electron",
+        "Dev",
+        "Developer",
+        "Tools",
+        "Installer",
+        "Ubuntu"
+    ],
+    "author": {
+        "name": "Bogdan Mic",
+        "email": "mic.bogdan@gmail.com"
+    },
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/bogdanmic/dev-tools-linux/issues"
+    },
+    "homepage": "https://github.com/bogdanmic/dev-tools-linux#readme",
+    "devDependencies": {
+        "electron": "^4.0.6"
+    }
 }
