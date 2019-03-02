@@ -6,6 +6,9 @@
     "private": true,
     "scripts": {
         "start": "electron .",
+        "build": "tsc",
+        "watch": "tsc -w",
+        "lint": "tslint -c tslint.json -p tsconfig.json",
         "test": "echo \"Error: no test specified\" && exit 1"
     },
     "repository": {
@@ -30,6 +33,9 @@
     },
     "homepage": "https://github.com/bogdanmic/dev-tools-linux#readme",
     "devDependencies": {
-        "electron": "^4.0.6"
+        "@types/node": "^11.10.4",
+        "electron": "^4.0.6",
+        "tslint": "^5.13.1",
+        "typescript": "^3.3.3333"
     }
 }
