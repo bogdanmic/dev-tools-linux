@@ -3,21 +3,24 @@
 //  - https://www.christianengvall.se/electron-packager-tutorial/
 //  - https://angularfirebase.com/lessons/desktop-apps-with-electron-and-angular/
 // Modules to control application life and create native browser window
-const { app, BrowserWindow } = require('electron')
-const path = require('path')
-const url = require('url')
+import { app, BrowserWindow } from 'electron'
+import * as path from 'path'
+import * as  url from 'url'
 
-let win, watchMode;
+let win: BrowserWindow | null = null;
+let watchMode: boolean = false;
 const args = process.argv.slice(1);
 watchMode = args.some(val => val === '--watch');
 
 if (watchMode) {
-    // Enable the live reload for our electron app
+    // We can't import this because it's not built for that
     const electron_reload = require('electron-reload')
-    electron_reload(path.join(__dirname, "/dist"))
+    // Enable the live reload for our electron app
+    electron_reload(path.join(__dirname))
 }
 
-function createWindow() {
+function createWindow(): void {
+    // TODO: Launch the app in full size?
     // Create the browser window.
     win = new BrowserWindow({
         width: 600,
@@ -30,7 +33,7 @@ function createWindow() {
 
     // and load the index.html of the app.
     win.loadURL(url.format({
-        pathname: path.join(__dirname, "/dist/index.html"),
+        pathname: path.join(__dirname, "/index.html"),
         protocol: 'file:',
         slashes: true
     }))
