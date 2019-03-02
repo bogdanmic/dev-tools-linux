@@ -17,6 +17,15 @@ $ npm run electron:build
 $ npm run package-linux
 ```
 
+### Development
+To start the app for development you will need to open two terminals.
+```bash
+# In the first terminal run the angular app in watch mode
+$ npm run angular:watch
+# In the second terminal run the electron app in watch mode
+$ npm run electron:watch
+```
+
 ### Resources
 - [Setting up a basic electron app](https://github.com/electron/electron-quick-start)
 - [Add angular to an electron app](https://angularfirebase.com/lessons/desktop-apps-with-electron-and-angular/)

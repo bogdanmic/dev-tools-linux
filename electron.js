@@ -7,7 +7,15 @@ const { app, BrowserWindow } = require('electron')
 const path = require('path')
 const url = require('url')
 
-let win;
+let win, watchMode;
+const args = process.argv.slice(1);
+watchMode = args.some(val => val === '--watch');
+
+if (watchMode) {
+    // Enable the live reload for our electron app
+    const electron_reload = require('electron-reload')
+    electron_reload(path.join(__dirname, "/dist"))
+}
 
 function createWindow() {
     // Create the browser window.
@@ -27,9 +35,10 @@ function createWindow() {
         slashes: true
     }))
 
-    //// uncomment below to open the DevTools.
-    // win.webContents.openDevTools()
-
+    if (watchMode) {
+        // If in watchMode (developer mode) open the chromium dev tools
+        win.webContents.openDevTools()
+    }
     win.on('ready-to-show', () => {
         if (win !== null) {
             win.show()
