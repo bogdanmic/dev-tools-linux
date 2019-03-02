@@ -5,7 +5,8 @@
     "main": "./src/main.js",
     "private": true,
     "scripts": {
-        "start": "electron .",
+        "startOld": "electron .",
+        "start": "npm run build && electron ./dist/main.js",
         "build": "tsc",
         "watch": "tsc -w",
         "lint": "tslint -c tslint.json -p tsconfig.json",
