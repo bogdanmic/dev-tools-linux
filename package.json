@@ -2,11 +2,11 @@
     "name": "dev-tools-linux",
     "version": "1.0.0",
     "description": "Dev Tools Installer on Ubuntu",
-    "main": "./src/main.js",
+    "main": "electron.js",
     "private": true,
     "scripts": {
         "startOld": "electron .",
-        "start": "npm run build && electron ./dist/main.js",
+        "start": "npm run build && electron ./dist/electron.js",
         "build": "tsc",
         "watch": "tsc -w",
         "lint": "tslint -c tslint.json -p tsconfig.json",

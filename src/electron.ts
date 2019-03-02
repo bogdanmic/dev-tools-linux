@@ -21,7 +21,7 @@ function createWindow() {
     // and load the index.html of the app.
     // win.loadFile('./src/main.html')
     // win.loadURL('file://' + __dirname + '/main.html')
-    win.loadFile(path.join(__dirname, "../src/main.html"))
+    win.loadFile(path.join(__dirname, "../src/electron.html"))
     // Open the DevTools.
     // mainWindow.webContents.openDevTools()
 
