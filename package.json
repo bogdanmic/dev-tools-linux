@@ -1,7 +1,7 @@
 {
     "name": "dev-tools-linux",
     "version": "0.0.1",
-    "main": "electron.js",
+    "main": "dist/electron-main.js",
     "scripts": {
         "ng": "ng",
         "start": "ng serve",
@@ -10,8 +10,9 @@
         "lint": "ng lint",
         "e2e": "ng e2e",
         "angular:watch": "ng build --watch",
-        "electron:watch": "electron . --watch",
-        "electron:start": "electron .",
+        "electron:compile": "tsc --p electron",
+        "electron:watch": "npm run electron:compile && electron . --watch",
+        "electron:start": "npm run electron:compile && electron .",
         "electron:build": "npm run build --prod && npm run electron:start",
         "package-mac": "electron-packager . --overwrite --platform=darwin --arch=x64 --icon=src/assets/icons/mac/icon.icns --prune=true --out=release-builds",
         "package-win": "electron-packager . dev-tools-linux --overwrite --asar=true --platform=win32 --arch=ia32 --icon=src/assets/icons/win/icon.ico --prune=true --out=release-builds --version-string.CompanyName=CE --version-string.FileDescription=CE --version-string.ProductName=\"Dev Tools Linux\"",

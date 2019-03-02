@@ -18,6 +18,10 @@ $ npm run package-linux
 ```
 
 ### Development
+The app is splint in two directories:
+- **electron** - the electron app files
+- **src** -  the angular app files
+
 To start the app for development you will need to open two terminals.
 ```bash
 # In the first terminal run the angular app in watch mode
