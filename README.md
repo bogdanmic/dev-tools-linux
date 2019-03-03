@@ -12,10 +12,13 @@ This is an Electron app that allows you to install and setup your Ubuntu develop
 # Start the angular app in the browser
 $ npm run start
 # Start the electron app
+$ npm run electron:start
+# We need to build the app before packaging it
 $ npm run electron:build
 # Package the app for Linux
-$ npm run package-linux
+$ npm run package:linux
 ```
+For more commands take a look into the [package.json](package.json) file.
 
 ### Development
 The app is splint in two directories:

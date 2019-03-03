@@ -12,11 +12,11 @@
         "angular:watch": "ng build --watch",
         "electron:compile": "tsc --p electron",
         "electron:watch": "npm run electron:compile && electron . --watch",
-        "electron:start": "npm run electron:compile && electron .",
-        "electron:build": "npm run build --prod && npm run electron:start",
-        "package-mac": "electron-packager . --overwrite --platform=darwin --arch=x64 --icon=src/assets/icons/mac/icon.icns --prune=true --out=release-builds",
-        "package-win": "electron-packager . dev-tools-linux --overwrite --asar=true --platform=win32 --arch=ia32 --icon=src/assets/icons/win/icon.ico --prune=true --out=release-builds --version-string.CompanyName=CE --version-string.FileDescription=CE --version-string.ProductName=\"Dev Tools Linux\"",
-        "package-linux": "electron-packager . dev-tools-linux --overwrite --asar=true --platform=linux --arch=x64 --icon=src/assets/icons/png/1024x1024.png --prune=true --out=release-builds"
+        "electron:start": "npm run build --prod && npm run electron:compile && electron .",
+        "electron:build": "npm run build --prod && npm run electron:compile",
+        "package:mac": "electron-packager . --overwrite --platform=darwin --arch=x64 --icon=src/assets/icons/mac/icon.icns --prune=true --out=release-builds",
+        "package:win": "electron-packager . dev-tools-linux --overwrite --asar=true --platform=win32 --arch=ia32 --icon=src/assets/icons/win/icon.ico --prune=true --out=release-builds --version-string.CompanyName=CE --version-string.FileDescription=CE --version-string.ProductName=\"Dev Tools Linux\"",
+        "package:linux": "electron-packager . dev-tools-linux --overwrite --asar=true --platform=linux --arch=x64 --icon=src/assets/icons/png/1024x1024.png --prune=true --out=release-builds"
     },
     "private": true,
     "dependencies": {
