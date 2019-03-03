@@ -3,7 +3,7 @@
 //  - https://www.christianengvall.se/electron-packager-tutorial/
 //  - https://angularfirebase.com/lessons/desktop-apps-with-electron-and-angular/
 // Modules to control application life and create native browser window
-import { app, BrowserWindow } from 'electron'
+import { app, BrowserWindow, screen } from 'electron'
 import * as path from 'path'
 import * as  url from 'url'
 
@@ -20,11 +20,16 @@ if (watchMode) {
 }
 
 function createWindow(): void {
-    // TODO: Launch the app in full size?
+    // Compute the full screen size
+    const size = screen.getPrimaryDisplay().workAreaSize;
     // Create the browser window.
     win = new BrowserWindow({
-        width: 600,
-        height: 600,
+        // width: 800,
+        // height: 600,
+        x: 0,
+        y: 0,
+        width: size.width,
+        height: size.height,
         darkTheme: true,
         webPreferences: {
             nodeIntegration: true
@@ -41,6 +46,11 @@ function createWindow(): void {
     if (watchMode) {
         // If in watchMode (developer mode) open the chromium dev tools
         win.webContents.openDevTools()
+        // It works here as well if we are in devMode = watchMode
+        // Run the following from the Console tab of your app's DevTools
+        const devTron = require('devtron')
+        devTron.install()
+        // You should now see a Devtron tab added to the DevTools
     }
     win.on('ready-to-show', () => {
         if (win !== null) {
