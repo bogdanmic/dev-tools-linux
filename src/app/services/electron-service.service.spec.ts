@@ -1,12 +1,12 @@
 import { TestBed } from '@angular/core/testing';
 
-import { ElectronServiceService } from './electron.service';
+import { ElectronService } from './electron.service';
 
 describe('ElectronServiceService', () => {
   beforeEach(() => TestBed.configureTestingModule({}));
 
   it('should be created', () => {
-    const service: ElectronServiceService = TestBed.get(ElectronServiceService);
+    const service: ElectronService = TestBed.get(ElectronService);
     expect(service).toBeTruthy();
   });
 });
