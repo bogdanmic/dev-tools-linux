@@ -1,7 +1,7 @@
-import { BrowserWindow, screen } from 'electron';
+import { BrowserWindow, screen, ipcMain } from 'electron';
 import * as path from 'path'
 import * as  url from 'url'
-
+import * as child from 'child_process'
 export default class ElectronMain {
     private static win: Electron.BrowserWindow | null;
     private static app: Electron.App;
@@ -52,6 +52,19 @@ export default class ElectronMain {
         ElectronMain.app.on('window-all-closed', ElectronMain.onWindowAllClosed)
 
         ElectronMain.app.on('activate', ElectronMain.onActivate)
+
+        // TODO: This should be moved somewhere else
+        ipcMain.on('do-something', (event: any) => {
+            console.log("do-something")
+            child.exec('echo "I just did something! `date`" >> lol.txt')
+            event.sender.send('do-something', 'jakieś dane');
+
+            const lol = child.spawn('pwd');
+            process.stdin.pipe(lol.stdin)
+            lol.stdout.on('data', (data) => {
+                console.log(` - child stdout:\n\t${data}`);
+            });
+        });
     }
 
     private static createWindow(): void {
