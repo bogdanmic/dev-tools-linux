@@ -20,21 +20,27 @@ if (watchMode) {
 }
 
 function createWindow(): void {
-    // Compute the full screen size
-    const size = screen.getPrimaryDisplay().workAreaSize;
-    // Create the browser window.
-    win = new BrowserWindow({
-        // width: 800,
-        // height: 600,
-        x: 0,
-        y: 0,
-        width: size.width,
-        height: size.height,
+    // Create the browser window. Depending on the environment we use.
+    // It's nice to have it full screen when developing but on prod it might be
+    // to be a little bit smaller
+    let windowOptions: any = {
         darkTheme: true,
         webPreferences: {
             nodeIntegration: true
         }
-    })
+    }
+    if (watchMode) {
+        windowOptions.x = 0
+        windowOptions.y = 0
+        // Compute the full screen size
+        const size = screen.getPrimaryDisplay().workAreaSize;
+        windowOptions.width = size.width;
+        windowOptions.height = size.height;
+    } else {
+        windowOptions.width = 800;
+        windowOptions.height = 600;
+    }
+    win = new BrowserWindow(windowOptions)
 
     // and load the index.html of the app.
     win.loadURL(url.format({
