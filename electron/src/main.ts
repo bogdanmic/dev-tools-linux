@@ -57,12 +57,13 @@ export default class ElectronMain {
         ipcMain.on('do-something', (event: any) => {
             console.log("do-something")
             child.exec('echo "I just did something! `date`" >> lol.txt')
-            event.sender.send('do-something', 'jakieś dane');
+            // event.sender.send('do-something', new Date());
 
-            const lol = child.spawn('pwd');
+            const lol = child.spawn('date');
             process.stdin.pipe(lol.stdin)
             lol.stdout.on('data', (data) => {
                 console.log(` - child stdout:\n\t${data}`);
+                event.sender.send('do-something', data);
             });
         });
     }
