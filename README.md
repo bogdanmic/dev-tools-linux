@@ -44,6 +44,8 @@ $ npm run angular:watch
 $ npm run electron:watch
 ```
 
+We use [electron-remote](https://www.npmjs.com/package/electron-remote) for running tasks outside the main electron thread.
+
 ### Resources
 - [Setting up a basic electron app](https://github.com/electron/electron-quick-start)
 - [Add angular to an electron app](https://angularfirebase.com/lessons/desktop-apps-with-electron-and-angular/)
