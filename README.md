@@ -25,13 +25,26 @@ The app is splint in two directories:
 - **electron** - the electron app files
 - **src** -  the angular app files
 
+This app is built using Angular and Electron.
+Usually electron apps have two processes. The main process and the renderer process.
+The files in the **electron** folder run in the main process and
+the **angular** app runs in the renderer process.
+
+As far as I found, it's a consensus on the fact that you should do as less work 
+as possible on the main process. Also we should keep the renderer process as lite
+as we can and use some sort of multi-threading and such. 
+
 To start the app for development you will need to open two terminals.
 ```bash
 # In the first terminal run the angular app in watch mode
 $ npm run angular:watch
+# Make sure you finished running the first one before the second.
+# Just to be safe.
 # In the second terminal run the electron app in watch mode
 $ npm run electron:watch
 ```
+
+We use [electron-remote](https://www.npmjs.com/package/electron-remote) for running tasks outside the main electron thread.
 
 ### Resources
 - [Setting up a basic electron app](https://github.com/electron/electron-quick-start)
