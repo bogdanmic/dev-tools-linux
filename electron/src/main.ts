@@ -1,6 +1,11 @@
-import { BrowserWindow, screen } from 'electron';
+import { BrowserWindow, screen, ipcMain } from 'electron'
 import * as path from 'path'
 import * as  url from 'url'
+import * as child from 'child_process'
+
+// Require the stuff needed for the running stuff outside of the main thread using electron-remote
+const electronRemote = require('electron-remote')
+const work = electronRemote.requireTaskPool(require.resolve('./tasks/demo-task'))
 
 export default class ElectronMain {
     private static win: Electron.BrowserWindow | null;
@@ -52,6 +57,24 @@ export default class ElectronMain {
         ElectronMain.app.on('window-all-closed', ElectronMain.onWindowAllClosed)
 
         ElectronMain.app.on('activate', ElectronMain.onActivate)
+
+        // TODO: This should be moved somewhere else
+        ipcMain.on('do-something', (event: any) => {
+            console.log("do-something")
+            child.exec('echo "I just did something! `date`" >> lol.txt')
+
+            work("any argument").then((result: any) => {
+                console.log(result)
+            })
+
+            const dateShellCommand = child.spawn('date')
+            process.stdin.pipe(dateShellCommand.stdin)
+            dateShellCommand.stdout.on('data', (data) => {
+                console.log(` - child stdout:\n\t${data}`);
+                event.sender.send('do-something', data);
+            });
+
+        });
     }
 
     private static createWindow(): void {
