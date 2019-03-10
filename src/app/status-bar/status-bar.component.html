@@ -1,0 +1,12 @@
+<mat-toolbar class="bottom-toolbar mat-elevation-z6">
+    <div class="bottom-status">
+      <span>Linux</span>
+      <mat-icon *ngIf="isLinux"  color="accent">check</mat-icon>
+      <mat-icon *ngIf="!isLinux" color="error">close</mat-icon>
+    </div>
+    <div class="bottom-status">
+      <span>Network</span>
+      <mat-icon *ngIf="isOnline" color="accent">wifi</mat-icon>
+      <mat-icon *ngIf="!isOnline" color="error">wifi_off</mat-icon>
+    </div>
+</mat-toolbar>
