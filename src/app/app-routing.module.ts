@@ -1,10 +1,11 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { environment } from "../environments/environment";
+import { SetupStartComponent } from './setup-start/setup-start.component';
 
 const routes: Routes = [
-    // { path: '', component: CheckRequirementsComponent },
-    // { path: '**', redirectTo: '', pathMatch: 'full' }
+    { path: '', component: SetupStartComponent },
+    { path: '**', redirectTo: '', pathMatch: 'full' }
 ];
 
 @NgModule({

@@ -6,11 +6,13 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AppMaterialModule } from './app-material.module';
 import { StatusBarComponent } from './status-bar/status-bar.component';
+import { SetupStartComponent } from './setup-start/setup-start.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     StatusBarComponent,
+    SetupStartComponent,
   ],
   imports: [
     BrowserModule,
