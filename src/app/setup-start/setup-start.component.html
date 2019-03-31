@@ -1,3 +1,9 @@
-<p>
-  setup-start works!
-</p>
+<div class="centered-container">
+  <div class="centered-content">
+    <mat-form-field class="full-width">
+      <input matInput placeholder="Working directory" disabled>
+    </mat-form-field>
+    <button (click)="doSomething()" mat-raised-button color="primary">Choose</button>
+    <p>{{txtMsg}}</p>
+  </div>
+</div>

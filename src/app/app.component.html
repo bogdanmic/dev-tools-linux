@@ -39,11 +39,7 @@
     <mat-sidenav-content class="content">
         <!-- Add Content Here -->
         <ng-content></ng-content>
-        <router-outlet></router-outlet>
-        <div >
-            <button (click)="doSomething()" mat-raised-button color="primary">Do something</button>
-            <p>{{txtMsg}}</p>
-        </div>
+        <router-outlet></router-outlet>    
     </mat-sidenav-content>
 </mat-sidenav-container>
 <app-status-bar></app-status-bar>
