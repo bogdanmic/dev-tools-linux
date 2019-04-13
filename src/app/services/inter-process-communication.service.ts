@@ -21,7 +21,7 @@ export class InterProcessCommunicationService {
       // That is caused because the response of the on is not in the same zone
       // A zone is some kind of angular thing. Fixed it with the help of:
       // https://github.com/angular/zone.js/issues/537
-      this.currentZone.run(() => { this.ips.changeInterProcessResponse(args) })
+      this.currentZone.run(() => { this.ips.changeInterProcessResponse(EventResponse.fromJSON(args)) })
     })
   }
 
