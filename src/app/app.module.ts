@@ -7,12 +7,14 @@ import { AppComponent } from './app.component';
 import { AppMaterialModule } from './app-material.module';
 import { StatusBarComponent } from './status-bar/status-bar.component';
 import { SetupStartComponent } from './setup-start/setup-start.component';
+import { ToastNotificationComponent } from './toast-notification/toast-notification.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     StatusBarComponent,
     SetupStartComponent,
+    ToastNotificationComponent,
   ],
   imports: [
     BrowserModule,
@@ -20,6 +22,7 @@ import { SetupStartComponent } from './setup-start/setup-start.component';
     AppRoutingModule,
     AppMaterialModule
   ],
+  entryComponents: [ToastNotificationComponent],
   providers: [],
   bootstrap: [AppComponent]
 })

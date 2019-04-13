@@ -9,6 +9,7 @@ import {
   MatDividerModule,
   MatFormFieldModule,
   MatInputModule,
+  MatSnackBarModule,
 } from '@angular/material';
 
 @NgModule({
@@ -23,6 +24,7 @@ import {
     MatDividerModule,
     MatFormFieldModule,
     MatInputModule,
+    MatSnackBarModule,
   ],
   exports: [
     MatToolbarModule,
@@ -33,6 +35,7 @@ import {
     MatDividerModule,
     MatFormFieldModule,
     MatInputModule,
+    MatSnackBarModule,
   ]
 })
 export class AppMaterialModule { }
