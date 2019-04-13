@@ -37,7 +37,7 @@ export class StatusBarComponent implements OnInit {
     })
 
     this.ips.interProcessMessage.subscribe((message: EventResponse) => {
-      if (message) {
+      if (message && message.message) {
         // Display a desktop notifications
         Notification.requestPermission().then(function (result) {
           new Notification(
