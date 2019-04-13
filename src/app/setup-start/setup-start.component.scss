@@ -1,0 +1,15 @@
+.centered-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .centered-content {
+    width: 700px;
+
+    .full-width {
+      flex: 1 1 auto;
+      width: 610px;
+      margin-right: 10px;
+    }
+  }
+}
