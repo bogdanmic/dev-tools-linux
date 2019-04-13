@@ -2,8 +2,9 @@ import { BrowserWindow, screen, ipcMain } from 'electron'
 import * as path from 'path'
 import * as  url from 'url'
 import * as child from 'child_process'
-import { MainEvent, AppEvent } from './common/app-event'
+import { MainEvent } from './common/app-event'
 import { EventResponse } from './common/event-response';
+import { AppEventPayload } from './common/app-event-payload';
 
 // Require the stuff needed for the running stuff outside of the main thread using electron-remote
 const electronRemote = require('electron-remote')
@@ -76,7 +77,7 @@ export default class ElectronMain {
         });
 
         // Listen for the event from the UI
-        ipcMain.on(MainEvent.INTER_PROCESS_EVENT, (event: any, args: AppEvent) => {
+        ipcMain.on(MainEvent.INTER_PROCESS_EVENT, (event: any, args: AppEventPayload) => {
             // Execute the task asked by the event.
             taskExecutor(args).then((result: EventResponse) => {
                 // Return the result of the task back to the UI
