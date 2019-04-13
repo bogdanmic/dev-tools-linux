@@ -3,7 +3,7 @@
     <mat-form-field class="full-width">
       <input matInput placeholder="Working directory" disabled>
     </mat-form-field>
-    <button (click)="doSomething()" mat-raised-button color="primary">Choose</button>
-    <p>{{txtMsg}}</p>
+    <button (click)="selectWorkDir()" mat-raised-button color="primary">Choose</button>
+    <p>{{message|json}}</p>
   </div>
 </div>

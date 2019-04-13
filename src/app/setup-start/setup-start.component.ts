@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { ElectronService } from '../services/electron.service';
 import { InterProcessCommunicationService } from '../services/inter-process-communication.service';
 import { InterProcessSyncService } from '../services/inter-process-sync.service';
+import { AppEvent } from '../common/app-event'
+import { EventResponse } from '../common/event-response';
 
 @Component({
   selector: 'app-setup-start',
@@ -10,27 +11,20 @@ import { InterProcessSyncService } from '../services/inter-process-sync.service'
 })
 export class SetupStartComponent implements OnInit {
 
-  txtMsg: string
+  message: EventResponse
 
   constructor(
-    private ipc: ElectronService,
     private ipcs: InterProcessCommunicationService,
     private ips: InterProcessSyncService,
   ) { }
 
   ngOnInit() {
-    this.ips.changeInterProcess("Nothing to do")
-    this.ips.interProcessMessage.subscribe(message => {
-      this.txtMsg = message
+    this.ips.interProcessMessage.subscribe((message: EventResponse) => {
+      this.message = message
     })
   }
 
-  doSomething(): void {
-    console.log("I'm doing something")
-    console.log(this.ipc.isLinux)
-    console.log(this.ipc.isX64)
-    console.log(this.ipc.isX86)
-    this.ipcs.callMainProcess()
+  selectWorkDir(): void {
+    this.ipcs.sendEvent(AppEvent.SELECT_WORK_DIR)
   }
-
 }
