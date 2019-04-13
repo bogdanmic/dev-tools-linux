@@ -45,4 +45,8 @@ export class SetupStartComponent implements OnInit {
   selectWorkDir(): void {
     this.ipcs.sendEvent(AppEvent.SELECT_WORK_DIR)
   }
+
+  initWorkDir(): void {
+    this.ipcs.sendEventData(AppEvent.INIT_WORK_DIR, this.selectedWorkDir)
+  }
 }
