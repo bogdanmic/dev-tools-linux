@@ -7,7 +7,6 @@ import { EventResponse } from './common/event-response';
 
 // Require the stuff needed for the running stuff outside of the main thread using electron-remote
 const electronRemote = require('electron-remote')
-const work = electronRemote.requireTaskPool(require.resolve('./tasks/demo-task'))
 const taskExecutor = electronRemote.requireTaskPool(require.resolve('./tasks/task-executor'))
 
 export default class ElectronMain {
@@ -66,12 +65,6 @@ export default class ElectronMain {
             console.log("do-something")
             console.log(args)
             child.exec('echo "I just did something! `date`" >> lol.txt')
-
-            work("any argument").then((result: any) => {
-                console.log(result)
-            })
-
-            // console.log(dialog.showOpenDialog({ properties: ['openDirectory'] }))
 
             const dateShellCommand = child.spawn('date')
             process.stdin.pipe(dateShellCommand.stdin)
