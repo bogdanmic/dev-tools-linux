@@ -15,6 +15,7 @@ export class SetupStartComponent implements OnInit {
 
   message: EventResponse
   selectedWorkDir: string = null
+  showStart: boolean = false
 
   constructor(
     private ipcs: InterProcessCommunicationService,
@@ -30,6 +31,8 @@ export class SetupStartComponent implements OnInit {
       .subscribe((message: EventResponse) => {
         if (message.successful) {
           this.selectedWorkDir = message.value
+          // Because we selected a good directory we can start the install process
+          this.showStart = true
         } else {
           this.selectedWorkDir = null
         }
