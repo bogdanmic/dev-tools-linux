@@ -4,6 +4,7 @@ import { InterProcessSyncService } from '../services/inter-process-sync.service'
 import { AppEvent } from '../common/app-event'
 import { EventResponse } from '../common/event-response';
 import { filter } from 'rxjs/operators';
+import { ConfigSyncService } from '../services/config-sync.service';
 
 @Component({
   selector: 'app-setup-start',
@@ -18,6 +19,7 @@ export class SetupStartComponent implements OnInit {
   constructor(
     private ipcs: InterProcessCommunicationService,
     private ips: InterProcessSyncService,
+    private configService: ConfigSyncService,
   ) { }
 
   ngOnInit() {
@@ -32,6 +34,8 @@ export class SetupStartComponent implements OnInit {
           this.selectedWorkDir = null
         }
         this.message = message
+        // Send the selected working directory
+        this.configService.changeWorkDir(this.selectedWorkDir)
       })
   }
 

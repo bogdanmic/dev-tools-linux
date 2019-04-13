@@ -4,6 +4,7 @@ import { MatSnackBar } from '@angular/material';
 import { InterProcessSyncService } from '../services/inter-process-sync.service';
 import { EventResponse } from '../common/event-response';
 import { ToastNotificationComponent } from '../toast-notification/toast-notification.component';
+import { ConfigSyncService } from '../services/config-sync.service';
 
 declare const window: any;
 
@@ -15,12 +16,14 @@ declare const window: any;
 export class StatusBarComponent implements OnInit {
   isLinux: boolean = false;
   isOnline: boolean = true;
+  workDir: string = null;
   durationInSeconds: number = 5;
 
   constructor(
     private es: ElectronService,
     private snackBar: MatSnackBar,
-    private ips: InterProcessSyncService
+    private ips: InterProcessSyncService,
+    private configService: ConfigSyncService
   ) { }
 
   ngOnInit() {
@@ -35,7 +38,6 @@ export class StatusBarComponent implements OnInit {
 
     this.ips.interProcessMessage.subscribe((message: EventResponse) => {
       if (message) {
-
         // Display a desktop notifications
         Notification.requestPermission().then(function (result) {
           new Notification(
@@ -52,6 +54,8 @@ export class StatusBarComponent implements OnInit {
         });
       }
     })
+
+    this.configService.workDirMessage.subscribe((workDir: string) => this.workDir = workDir)
   }
 
 }
