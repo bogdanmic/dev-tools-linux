@@ -17,8 +17,8 @@ export default class ElectronMain {
 
     // The default options with which we create the window
     private static windowOptions: any = {
-        width: 800,
-        height: 600,
+        width: 1024,
+        height: 768,
         darkTheme: true,
         webPreferences: {
             nodeIntegration: true

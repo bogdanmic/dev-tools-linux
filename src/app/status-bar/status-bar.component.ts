@@ -17,7 +17,7 @@ export class StatusBarComponent implements OnInit {
   isLinux: boolean = false;
   isOnline: boolean = true;
   workDir: string = null;
-  durationInSeconds: number = 5;
+  durationInSeconds: number = 4;
 
   constructor(
     private es: ElectronService,
