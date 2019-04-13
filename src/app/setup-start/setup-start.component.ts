@@ -3,6 +3,7 @@ import { InterProcessCommunicationService } from '../services/inter-process-comm
 import { InterProcessSyncService } from '../services/inter-process-sync.service';
 import { AppEvent } from '../common/app-event'
 import { EventResponse } from '../common/event-response';
+import { filter } from 'rxjs/operators';
 
 @Component({
   selector: 'app-setup-start',
@@ -12,6 +13,7 @@ import { EventResponse } from '../common/event-response';
 export class SetupStartComponent implements OnInit {
 
   message: EventResponse
+  selectedWorkDir: string = null
 
   constructor(
     private ipcs: InterProcessCommunicationService,
@@ -19,9 +21,18 @@ export class SetupStartComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.ips.interProcessMessage.subscribe((message: EventResponse) => {
-      this.message = message
-    })
+    this.ips.interProcessMessage
+      .pipe(
+        filter((message: EventResponse) => message != null && message.event == AppEvent.SELECT_WORK_DIR)
+      )
+      .subscribe((message: EventResponse) => {
+        if (message.successful) {
+          this.selectedWorkDir = message.value
+        } else {
+          this.selectedWorkDir = null
+        }
+        this.message = message
+      })
   }
 
   selectWorkDir(): void {

@@ -1,7 +1,7 @@
 <div class="centered-container">
   <div class="centered-content">
     <mat-form-field class="full-width">
-      <input matInput placeholder="Select a work directory" disabled>
+      <input matInput placeholder="Select a work directory" [(ngModel)]="selectedWorkDir" disabled>
     </mat-form-field>
     <button (click)="selectWorkDir()" mat-raised-button color="primary">Choose</button>
     <p>{{message|json}}</p>
