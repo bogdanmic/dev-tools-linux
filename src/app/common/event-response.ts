@@ -2,10 +2,10 @@ import { AppEvent } from './app-event';
 
 export class EventResponse {
 
-    _event: AppEvent;
-    _successful: boolean;
-    _value: string | null;
-    _message: string | null;
+    private _event: AppEvent;
+    private _successful: boolean;
+    private _value: string | null;
+    private _message: string | null;
 
     constructor(event: AppEvent, successful: boolean, value: string | null, message: string | null) {
         this._event = event
