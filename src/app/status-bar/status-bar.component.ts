@@ -35,6 +35,17 @@ export class StatusBarComponent implements OnInit {
 
     this.ips.interProcessMessage.subscribe((message: EventResponse) => {
       if (message) {
+
+        // Display a desktop notifications
+        Notification.requestPermission().then(function (result) {
+          new Notification(
+            message.successful ? 'Success' : 'Error',
+            {
+              body: message.message
+            }
+          )
+        })
+
         this.snackBar.openFromComponent(ToastNotificationComponent, {
           data: message,
           duration: this.durationInSeconds * 1000,
