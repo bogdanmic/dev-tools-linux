@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { ElectronService } from './electron.service';
 import { InterProcessSyncService } from './inter-process-sync.service';
-import { AppEvent, MainEvent } from '../common/app-event';
-import { EventResponse } from '../common/event-response';
-import { AppEventPayload } from '../common/app-event-payload';
+import { AppEvent, MainEvent } from '../../../electron/src/common/app-event';
+import { EventResponse } from '../../../electron/src/common/event-response';
+import { AppEventPayload } from '../../../electron/src/common/app-event-payload';
 
 declare let Zone: any;
 

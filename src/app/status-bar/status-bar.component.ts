@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ElectronService } from '../services/electron.service';
 import { MatSnackBar } from '@angular/material';
 import { InterProcessSyncService } from '../services/inter-process-sync.service';
-import { EventResponse } from '../common/event-response';
+import { EventResponse } from '../../../electron/src/common/event-response';
 import { ToastNotificationComponent } from '../toast-notification/toast-notification.component';
 import { ConfigSyncService } from '../services/config-sync.service';
 
