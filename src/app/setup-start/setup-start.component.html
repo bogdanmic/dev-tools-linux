@@ -1,0 +1,42 @@
+<div class="centered-container">
+  <div class="centered-content">
+    <mat-form-field class="full-width">
+      <input matInput placeholder="Select a work directory" [(ngModel)]="selectedWorkDir" disabled>
+    </mat-form-field>
+    <button (click)="selectWorkDir()" mat-raised-button color="primary">Choose</button>
+    <div *ngIf="showStart">
+      <mat-card class="example-card">
+        <mat-card-header>
+          <mat-card-title>We will create the following paths for our setup:</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <mat-list role="list">
+            <mat-list-item role="listitem">
+              <mat-icon mat-list-icon>folder</mat-icon>
+              <h4 mat-line><strong>{{selectedWorkDir}}{{pathPrivate}}</strong></h4>
+              <p mat-line>Stores keys and customization files</p>
+            </mat-list-item>
+            <mat-list-item role="listitem">
+              <mat-icon mat-list-icon>folder</mat-icon>
+              <h4 mat-line><strong>{{selectedWorkDir}}{{pathWork}}</strong></h4>
+              <p mat-line>Stores your GitHub repositories</p>
+            </mat-list-item>
+            <mat-list-item role="listitem">
+              <mat-icon mat-list-icon>folder</mat-icon>
+              <h4 mat-line><strong>{{selectedWorkDir}}{{pathContainers}}</strong></h4>
+              <p mat-line>Stores Docker containers data</p>
+            </mat-list-item>
+            <mat-list-item role="listitem">
+              <mat-icon mat-list-icon>folder</mat-icon>
+              <h4 mat-line><strong>{{selectedWorkDir}}{{pathTools}}</strong></h4>
+              <p mat-line>Stores tools that we will use for development</p>
+            </mat-list-item>
+          </mat-list>
+        </mat-card-content>
+      </mat-card>
+      <h2 class="full-width">
+        <button (click)="initWorkDir()" mat-raised-button color="primary">START</button>
+      </h2>
+    </div>
+  </div>
+</div>

@@ -7,10 +7,11 @@
         </button>
     </mat-toolbar-row>
 </mat-toolbar>
-<mat-sidenav-container>
-    <mat-sidenav #drawer class="mat-elevation-z2" fixedInViewport="true" mode="side" fixedTopGap="64" opened>
+<mat-sidenav-container class="app-container">
+    <mat-sidenav #drawer class="mat-elevation-z2" fixedInViewport="true" 
+    mode="side" fixedTopGap="64" fixedBottomGap="21" opened>
 
-        <mat-nav-list>
+        <!-- <mat-nav-list>
             <h3 mat-subheader>We are using</h3>
             <mat-list-item>
                 <h4 mat-line>
@@ -33,15 +34,12 @@
                 </h5>
                 <mat-icon>launch</mat-icon>
             </mat-list-item>
-        </mat-nav-list>
+        </mat-nav-list> -->
     </mat-sidenav>
-    <mat-sidenav-content>
-        <div class="content">
-            <button (click)="doSomething()" mat-raised-button color="primary">Do something</button>
-            <p>{{txtMsg}}</p>
-        </div>
+    <mat-sidenav-content class="content">
         <!-- Add Content Here -->
         <ng-content></ng-content>
-        <router-outlet></router-outlet>
+        <router-outlet></router-outlet>    
     </mat-sidenav-content>
 </mat-sidenav-container>
+<app-status-bar></app-status-bar>

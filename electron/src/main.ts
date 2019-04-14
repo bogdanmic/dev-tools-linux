@@ -2,10 +2,13 @@ import { BrowserWindow, screen, ipcMain } from 'electron'
 import * as path from 'path'
 import * as  url from 'url'
 import * as child from 'child_process'
+import { MainEvent } from './common/app-event'
+import { EventResponse } from './common/event-response';
+import { AppEventPayload } from './common/app-event-payload';
 
 // Require the stuff needed for the running stuff outside of the main thread using electron-remote
 const electronRemote = require('electron-remote')
-const work = electronRemote.requireTaskPool(require.resolve('./tasks/demo-task'))
+const taskExecutor = electronRemote.requireTaskPool(require.resolve('./tasks/task-executor'))
 
 export default class ElectronMain {
     private static win: Electron.BrowserWindow | null;
@@ -15,8 +18,8 @@ export default class ElectronMain {
 
     // The default options with which we create the window
     private static windowOptions: any = {
-        width: 800,
-        height: 600,
+        width: 1024,
+        height: 768,
         darkTheme: true,
         webPreferences: {
             nodeIntegration: true
@@ -59,13 +62,10 @@ export default class ElectronMain {
         ElectronMain.app.on('activate', ElectronMain.onActivate)
 
         // TODO: This should be moved somewhere else
-        ipcMain.on('do-something', (event: any) => {
+        ipcMain.on('do-something', (event: any, args: any) => {
             console.log("do-something")
+            console.log(args)
             child.exec('echo "I just did something! `date`" >> lol.txt')
-
-            work("any argument").then((result: any) => {
-                console.log(result)
-            })
 
             const dateShellCommand = child.spawn('date')
             process.stdin.pipe(dateShellCommand.stdin)
@@ -74,6 +74,15 @@ export default class ElectronMain {
                 event.sender.send('do-something', data);
             });
 
+        });
+
+        // Listen for the event from the UI
+        ipcMain.on(MainEvent.INTER_PROCESS_EVENT, (event: any, args: AppEventPayload) => {
+            // Execute the task asked by the event.
+            taskExecutor(args).then((result: EventResponse) => {
+                // Return the result of the task back to the UI
+                event.sender.send(MainEvent.INTER_PROCESS_EVENT, result);
+            })
         });
     }
 

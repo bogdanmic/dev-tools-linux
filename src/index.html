@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="en">
+
 <head>
   <meta charset="utf-8">
   <title>DevToolsLinux</title>
@@ -7,13 +8,37 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <style>
+    /* We need this here to have the first paint to create the idea of speed.*/
+    body {
+      background: #303030;
+    }
+
+    .pre-loading {
+      position: fixed;
+      top: 45%;
+      left: 50%;
+      /* bring your own prefixes */
+      transform: translate(-50%, -50%);
+      text-align: center;
+      color: #fff;
+    }
+
+  </style>
 </head>
+
 <body>
-  <app-root></app-root>
+  <app-root>
+    <div class="pre-loading">
+      <h3>Starting up...</h3>
+    </div>
+  </app-root>
   <script>
     // You can also require other files to run in this process
     // This comes from the electron folder
     require('./electron-renderer.js')
+
   </script>
 </body>
+
 </html>
