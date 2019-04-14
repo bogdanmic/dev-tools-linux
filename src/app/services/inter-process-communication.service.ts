@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { ElectronService } from './electron.service';
 import { InterProcessSyncService } from './inter-process-sync.service';
-import { AppEvent, MainEvent } from '../common/app-event';
-import { EventResponse } from '../common/event-response';
+import { AppEvent, MainEvent } from '../../../electron/src/common/app-event';
+import { EventResponse } from '../../../electron/src/common/event-response';
+import { AppEventPayload } from '../../../electron/src/common/app-event-payload';
 
 declare let Zone: any;
 
@@ -27,7 +28,13 @@ export class InterProcessCommunicationService {
 
   sendEvent(event: AppEvent): void {
     if (this.ipc.ipcRenderer) {
-      this.ipc.ipcRenderer.send(MainEvent.INTER_PROCESS_EVENT, event)
+      this.ipc.ipcRenderer.send(MainEvent.INTER_PROCESS_EVENT, new AppEventPayload(event, null))
+    }
+  }
+
+  sendEventData(event: AppEvent, data: any): void {
+    if (this.ipc.ipcRenderer) {
+      this.ipc.ipcRenderer.send(MainEvent.INTER_PROCESS_EVENT, new AppEventPayload(event, data))
     }
   }
 }

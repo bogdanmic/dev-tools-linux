@@ -13,6 +13,10 @@ export class EventResponse {
         this._value = value
         this._message = message
     }
+    
+    static fromJSON(d: any): EventResponse {
+        return Object.assign(new EventResponse(d._event, d._successful, d._value, d._message));
+    }
 
     public get message(): string | null {
         return this._message;

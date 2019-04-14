@@ -1,6 +1,6 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MAT_SNACK_BAR_DATA } from '@angular/material';
-import { EventResponse } from '../common/event-response';
+import { EventResponse } from '../../../electron/src/common/event-response';
 
 @Component({
   selector: 'app-toast-notification',

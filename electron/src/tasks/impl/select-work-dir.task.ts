@@ -1,5 +1,5 @@
 import { Task } from '../task.interface';
-import { AppEvent } from '../../common/app-event';
+import { AppEventPayload } from '../../common/app-event-payload';
 import { EventResponse } from '../../common/event-response';
 import * as path from 'path'
 
@@ -7,7 +7,7 @@ const { dialog } = require('electron').remote
 const fileSystem = require('electron').remote.require('fs')
 
 export default class SelectWorkDir implements Task {
-    execute(event: AppEvent): EventResponse {
+    execute(eventPayload: AppEventPayload): EventResponse {
         let successful: boolean = false
         let message: string | null = null
         let workDir: string | null = null
@@ -42,7 +42,7 @@ export default class SelectWorkDir implements Task {
             }
         }
 
-        return new EventResponse(event, successful, workDir, message);
+        return new EventResponse(eventPayload.event, successful, workDir, message);
     }
 
 }

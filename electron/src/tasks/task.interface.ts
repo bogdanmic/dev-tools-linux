@@ -1,6 +1,6 @@
-import { AppEvent } from '../common/app-event';
 import { EventResponse } from '../common/event-response';
+import { AppEventPayload } from '../common/app-event-payload';
 
 export interface Task {
-    execute(event: AppEvent): EventResponse;
+    execute(event: AppEventPayload): EventResponse;
 }

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
-import { EventResponse } from '../common/event-response';
+import { EventResponse } from '../../../electron/src/common/event-response';
 
 @Injectable({
   providedIn: 'root'

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ElectronService } from '../services/electron.service';
 import { MatSnackBar } from '@angular/material';
 import { InterProcessSyncService } from '../services/inter-process-sync.service';
-import { EventResponse } from '../common/event-response';
+import { EventResponse } from '../../../electron/src/common/event-response';
 import { ToastNotificationComponent } from '../toast-notification/toast-notification.component';
 import { ConfigSyncService } from '../services/config-sync.service';
 
@@ -37,7 +37,7 @@ export class StatusBarComponent implements OnInit {
     })
 
     this.ips.interProcessMessage.subscribe((message: EventResponse) => {
-      if (message) {
+      if (message && message.message) {
         // Display a desktop notifications
         Notification.requestPermission().then(function (result) {
           new Notification(
