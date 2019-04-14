@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { InterProcessCommunicationService } from '../services/inter-process-communication.service';
 import { InterProcessSyncService } from '../services/inter-process-sync.service';
-import { AppEvent } from '../common/app-event'
-import { EventResponse } from '../common/event-response';
+import { AppEvent } from '../../../electron/src/common/app-event'
+import { EventResponse } from '../../../electron/src/common/event-response';
 import { filter } from 'rxjs/operators';
 import { ConfigSyncService } from '../services/config-sync.service';
+import { AppConstants } from '../../../electron/src/common/app-constants';
 
 @Component({
   selector: 'app-setup-start',
@@ -16,6 +17,10 @@ export class SetupStartComponent implements OnInit {
   message: EventResponse
   selectedWorkDir: string = null
   showStart: boolean = false
+  pathPrivate: string = AppConstants.SETUP_PATH_PRIVATE
+  pathContainers: string = AppConstants.SETUP_PATH_CONTAINERS
+  pathTools: string = AppConstants.SETUP_PATH_TOOLS
+  pathWork: string = AppConstants.SETUP_PATH_WORK
 
   constructor(
     private ipcs: InterProcessCommunicationService,
